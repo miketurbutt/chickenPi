@@ -100,13 +100,13 @@ if Door_Action == 'open':  # Door is locked
     if 70 == runTime:
         print 'Something went wrong, go check the door!'
         message = 'Coop open FAILED!'
-        PushOver(message)
         Safe_Kill()
+        PushOver(message)
     if TopHall == 0:
         print 'Door is open!'
         message = 'Coop opened successfully!'
-        PushOver(message)
         Safe_Kill()
+        PushOver(message)
 elif Door_Action == 'close':  # Door is open
     print 'The door is open!'
     print 'The door is going down!'
@@ -118,14 +118,14 @@ elif Door_Action == 'close':  # Door is open
     if 70 == runTime:
         print 'Something went wrong, go check the door!'
         message = "Coop close FAILED!"
-        PushOver(message)
         Safe_Kill()
+        PushOver(message)
     if BottomHall == 0:
         time.sleep(1)
         print 'Door is locked!'
         message = "Coop closed successfully!"
-        PushOver(message)
         Safe_Kill()
+        PushOver(message)
 elif BottomHall == 0:  # Door is locked
     print 'The door is locked!'
     print 'The door is going up!'
@@ -137,13 +137,13 @@ elif BottomHall == 0:  # Door is locked
     if 70 == runTime:
         print 'Something went wrong, go check the door!'
         message = "Coop open FAILED!"
-        PushOver(message)
         Safe_Kill()
+        PushOver(message)
     if TopHall == 0:
         print 'Door is open!'
         message = "Coop opened successfully!"
-        PushOver(message)
         Safe_Kill()
+        PushOver(message)
 elif TopHall == 0:  # Door is open
     print 'The door is open!'
     print 'The door is going down!'
@@ -155,13 +155,13 @@ elif TopHall == 0:  # Door is open
     if 70 == runTime:
         print 'Something went wrong, go check the door!'
         message = "Coop close FAILED!"
-        PushOver(message)
         Safe_Kill()
+        PushOver(message)
     if BottomHall == 0:
         print 'Door is locked!'
         message = "Coop closed successfully!"
-        PushOver(message)
         Safe_Kill()
+        PushOver(message)
 runTime = time.clock() - TimeStart
 print 'Total Time: ' + str(runTime)
 Safe_Kill()
