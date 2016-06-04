@@ -83,8 +83,8 @@ if len(sys.argv) == 1:
 TimeStart = time.clock()
 runTime = 0
 # Check door status from Magnets
-BottomHall = GPIO.input(16)
-TopHall = GPIO.input(12)
+BottomHall = GPIO.input(12)
+TopHall = GPIO.input(16)
 if BottomHall == 0: print 'Door is locked'
 if TopHall == 0: print 'Door is open'
 if BottomHall == 1: print 'No magnet sensed on lock'
@@ -95,7 +95,7 @@ if Door_Action == 'open':  # Door is locked
     while TopHall == 1 and runTime < Door_Time:
         GPIO.output(18, True)
         GPIO.output(22, False)
-        TopHall = GPIO.input(12)
+        TopHall = GPIO.input(16)
         runTime = time.clock() - TimeStart
     if 70 == runTime:
         print 'Something went wrong, go check the door!'
@@ -113,7 +113,7 @@ elif Door_Action == 'close':  # Door is open
     while BottomHall == 1 and runTime < Door_Time:
         GPIO.output(18, False)
         GPIO.output(22, True)
-        BottomHall = GPIO.input(16)
+        BottomHall = GPIO.input(12)
         runTime = time.clock() - TimeStart
     if 70 == runTime:
         print 'Something went wrong, go check the door!'
@@ -132,7 +132,7 @@ elif BottomHall == 0:  # Door is locked
     while TopHall == 1 and runTime < Door_Time:
         GPIO.output(18, True)
         GPIO.output(22, False)
-        TopHall = GPIO.input(12)
+        TopHall = GPIO.input(16)
         runTime = time.clock() - TimeStart
     if 70 == runTime:
         print 'Something went wrong, go check the door!'
@@ -150,7 +150,7 @@ elif TopHall == 0:  # Door is open
     while BottomHall == 1 and runTime < Door_Time:
         GPIO.output(18, False)
         GPIO.output(22, True)
-        BottomHall = GPIO.input(16)
+        BottomHall = GPIO.input(12)
         runTime = time.clock() - TimeStart
     if 70 == runTime:
         print 'Something went wrong, go check the door!'
