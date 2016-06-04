@@ -72,10 +72,10 @@ if len(sys.argv) == 3:
 if len(sys.argv) == 2:
     print 'Forcing door to ', str(sys.argv[1])
     Door_Action = sys.argv[1]
-    Door_Time = 60  # This is a safety time
+    Door_Time = 65  # This is a safety time
 if len(sys.argv) == 1:
     Door_Action = 'default'  # Will reverse door state
-    Door_Time = 60  # This is a safety time
+    Door_Time = 65  # This is a safety time
 
 # Start door!
 
