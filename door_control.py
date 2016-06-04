@@ -54,7 +54,7 @@ if len(sys.argv) > 2:  # Argument for door action time
         print 'Error: ', str(sys.argv[2]), ' is not a number!'
         print "Exiting program..."
         sys.exit(0)
-    if int(sys.argv[2]) > 60:  # Checks that a time longer than 60s isn't entered
+    if int(sys.argv[2]) > 65:  # Checks that a time longer than 60s isn't entered
         print 'Please choose a time less than 60s'
         print "Exiting program..."
         sys.exit(0)
@@ -97,7 +97,7 @@ if Door_Action == 'open':  # Door is locked
         GPIO.output(22, False)
         TopHall = GPIO.input(12)
         runTime = time.clock() - TimeStart
-    if 60 == runTime:
+    if 65 == runTime:
         print 'Something went wrong, go check the door!'
         message = 'Coop open FAILED!'
         PushOver(message)
@@ -115,7 +115,7 @@ elif Door_Action == 'close':  # Door is open
         GPIO.output(22, True)
         BottomHall = GPIO.input(16)
         runTime = time.clock() - TimeStart
-    if 60 == runTime:
+    if 65 == runTime:
         print 'Something went wrong, go check the door!'
         message = "Coop close FAILED!"
         PushOver(message)
@@ -134,7 +134,7 @@ elif BottomHall == 0:  # Door is locked
         GPIO.output(22, False)
         TopHall = GPIO.input(12)
         runTime = time.clock() - TimeStart
-    if 60 == runTime:
+    if 65 == runTime:
         print 'Something went wrong, go check the door!'
         message = "Coop open FAILED!"
         PushOver(message)
@@ -152,7 +152,7 @@ elif TopHall == 0:  # Door is open
         GPIO.output(22, True)
         BottomHall = GPIO.input(16)
         runTime = time.clock() - TimeStart
-    if 60 == runTime:
+    if 65 == runTime:
         print 'Something went wrong, go check the door!'
         message = "Coop close FAILED!"
         PushOver(message)
