@@ -15,8 +15,8 @@ pushover_user = config[1].rstrip()
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(18, GPIO.OUT)  # motor
 GPIO.setup(22, GPIO.OUT)  # motor
-GPIO.setup(16, GPIO.IN)  # Locked
-GPIO.setup(12, GPIO.IN)  # Open
+GPIO.setup(16, GPIO.IN)  # Open
+GPIO.setup(12, GPIO.IN)  # Locked
 
 
 # Clean kill of script function (Stops Motor, cleans GPIO)
@@ -25,7 +25,7 @@ def Safe_Kill():
     GPIO.output(18, False)
     GPIO.output(22, False)
     GPIO.cleanup()
-    sys.exit('Motors shutdown, GPIO cleaned')
+    return('Motors shutdown, GPIO cleaned')
 
 
 def PushOver(message):
@@ -54,8 +54,8 @@ if len(sys.argv) > 2:  # Argument for door action time
         print 'Error: ', str(sys.argv[2]), ' is not a number!'
         print "Exiting program..."
         sys.exit(0)
-    if int(sys.argv[2]) > 70:  # Checks that a time longer than 60s isn't entered
-        print 'Please choose a time less than 60s'
+    if int(sys.argv[2]) > 70:  # Checks that a time longer than 70s isn't entered
+        print 'Please choose a time less than 70s'
         print "Exiting program..."
         sys.exit(0)
 
@@ -102,11 +102,13 @@ if Door_Action == 'open':  # Door is locked
         message = 'Coop open FAILED!'
         Safe_Kill()
         PushOver(message)
+        sys.exit(0)
     if TopHall == 0:
         print 'Door is open!'
         message = 'Coop opened successfully!'
         Safe_Kill()
         PushOver(message)
+        sys.exit(0)
 elif Door_Action == 'close':  # Door is open
     print 'The door is open!'
     print 'The door is going down!'
@@ -120,12 +122,14 @@ elif Door_Action == 'close':  # Door is open
         message = "Coop close FAILED!"
         Safe_Kill()
         PushOver(message)
+        sys.exit(0)
     if BottomHall == 0:
         time.sleep(1)
         print 'Door is locked!'
         message = "Coop closed successfully!"
         Safe_Kill()
         PushOver(message)
+        sys.exit(0)
 elif BottomHall == 0:  # Door is locked
     print 'The door is locked!'
     print 'The door is going up!'
@@ -139,11 +143,13 @@ elif BottomHall == 0:  # Door is locked
         message = "Coop open FAILED!"
         Safe_Kill()
         PushOver(message)
+        sys.exit(0)
     if TopHall == 0:
         print 'Door is open!'
         message = "Coop opened successfully!"
         Safe_Kill()
         PushOver(message)
+        sys.exit(0)
 elif TopHall == 0:  # Door is open
     print 'The door is open!'
     print 'The door is going down!'
@@ -157,11 +163,14 @@ elif TopHall == 0:  # Door is open
         message = "Coop close FAILED!"
         Safe_Kill()
         PushOver(message)
+        sys.exit(0)
     if BottomHall == 0:
         print 'Door is locked!'
         message = "Coop closed successfully!"
         Safe_Kill()
         PushOver(message)
+        sys.exit(0)
 runTime = time.clock() - TimeStart
 print 'Total Time: ' + str(runTime)
 Safe_Kill()
+sys.exit(0)
