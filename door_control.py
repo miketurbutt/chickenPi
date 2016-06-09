@@ -104,6 +104,7 @@ if Door_Action == 'open':  # Door is locked
         PushOver(message)
         sys.exit(0)
     if TopHall == 0:
+        time.sleep(1)
         print 'Door is open!'
         message = 'Coop opened successfully!'
         Safe_Kill()
@@ -145,6 +146,7 @@ elif BottomHall == 0:  # Door is locked
         PushOver(message)
         sys.exit(0)
     if TopHall == 0:
+        time.sleep(1)
         print 'Door is open!'
         message = "Coop opened successfully!"
         Safe_Kill()
@@ -165,6 +167,7 @@ elif TopHall == 0:  # Door is open
         PushOver(message)
         sys.exit(0)
     if BottomHall == 0:
+        time.sleep(1)
         print 'Door is locked!'
         message = "Coop closed successfully!"
         Safe_Kill()
