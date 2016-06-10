@@ -7,9 +7,9 @@ import datetime
 import httplib, urllib  # for Push Notifications
 
 # config.txt included in .gitignore first line is the token, the second line is the key
-config = open('config.txt').readlines()
-pushover_token = config[0].rstrip()
-pushover_user = config[1].rstrip()
+# config = open('config.txt').readlines()
+pushover_token = 'aZ48abAEXfJouw9p3ZHaXPtrgo1URM'
+pushover_user = 'u585xQwjtPfKEQdjFkdC243J8uryyk'
 
 # Setting up Board GPIO Pins
 GPIO.setmode(GPIO.BOARD)
