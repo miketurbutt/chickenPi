@@ -54,8 +54,8 @@ if len(sys.argv) > 2:  # Argument for door action time
         print 'Error: ', str(sys.argv[2]), ' is not a number!'
         print "Exiting program..."
         sys.exit(0)
-    if int(sys.argv[2]) > 70:  # Checks that a time longer than 70s isn't entered
-        print 'Please choose a time less than 70s'
+    if int(sys.argv[2]) > 39:  # Checks that a time longer than 39s isn't entered
+        print 'Please choose a time less than 39s'
         print "Exiting program..."
         sys.exit(0)
 
@@ -72,10 +72,10 @@ if len(sys.argv) == 3:
 if len(sys.argv) == 2:
     print 'Forcing door to ', str(sys.argv[1])
     Door_Action = sys.argv[1]
-    Door_Time = 70  # This is a safety time
+    Door_Time = 39  # This is a safety time
 if len(sys.argv) == 1:
     Door_Action = 'default'  # Will reverse door state
-    Door_Time = 70  # This is a safety time
+    Door_Time = 39  # This is a safety time
 
 # Start door!
 
@@ -97,7 +97,7 @@ if Door_Action == 'open':  # Door is locked
         GPIO.output(22, False)
         TopHall = GPIO.input(16)
         runTime = time.clock() - TimeStart
-    if 70 == runTime:
+    if 39 == runTime:
         print 'Something went wrong, go check the door!'
         message = 'Coop open FAILED!'
         Safe_Kill()
@@ -118,7 +118,7 @@ elif Door_Action == 'close':  # Door is open
         GPIO.output(22, True)
         BottomHall = GPIO.input(12)
         runTime = time.clock() - TimeStart
-    if 70 == runTime:
+    if 39 == runTime:
         print 'Something went wrong, go check the door!'
         message = "Coop close FAILED!"
         Safe_Kill()
@@ -139,7 +139,7 @@ elif BottomHall == 0:  # Door is locked
         GPIO.output(22, False)
         TopHall = GPIO.input(16)
         runTime = time.clock() - TimeStart
-    if 70 == runTime:
+    if 39 == runTime:
         print 'Something went wrong, go check the door!'
         message = "Coop open FAILED!"
         Safe_Kill()
@@ -160,7 +160,7 @@ elif TopHall == 0:  # Door is open
         GPIO.output(22, True)
         BottomHall = GPIO.input(12)
         runTime = time.clock() - TimeStart
-    if 70 == runTime:
+    if 39 == runTime:
         print 'Something went wrong, go check the door!'
         message = "Coop close FAILED!"
         Safe_Kill()
