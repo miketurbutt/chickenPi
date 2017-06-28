@@ -77,6 +77,9 @@ if len(sys.argv) == 1:
     Door_Action = 'default'  # Will reverse door state
     Door_Time = 39  # This is a safety time
 
+print 'Door_Action is', Door_Action
+print 'Door_Time is', Door_Time
+
 # Start door!
 
 # def DoorControl():
@@ -89,6 +92,7 @@ if BottomHall == 0: print 'Door is locked'
 if TopHall == 0: print 'Door is open'
 if BottomHall == 1: print 'No magnet sensed on lock'
 if TopHall == 1: print 'No magnet sensed top'
+
 if Door_Action == 'open':  # Door is locked
     print 'The door is locked!'
     print 'The door is going up!'
@@ -98,7 +102,7 @@ if Door_Action == 'open':  # Door is locked
         TopHall = GPIO.input(16)
         runTime = time.clock() - TimeStart
     if 39 >= runTime:
-        print 'Something went wrong, go check the door!'
+        print 'Something went wrong, go check the door!',str(runTime)
         message = 'Coop open FAILED!'
         Safe_Kill()
         PushOver(message)
@@ -106,7 +110,7 @@ if Door_Action == 'open':  # Door is locked
     if TopHall == 0:
         time.sleep(1)
         print 'Door is open!'
-        message = 'Coop opened successfully in ' + str(runTime) + 'secs.'
+        message = 'Coop opened successfully in ' + str(runTime) + ' secs.'
         Safe_Kill()
         PushOver(message)
         sys.exit(0)
@@ -119,7 +123,7 @@ elif Door_Action == 'close':  # Door is open
         BottomHall = GPIO.input(12)
         runTime = time.clock() - TimeStart
     if 39 >= runTime:
-        print 'Something went wrong, go check the door!'
+        print 'Something went wrong, go check the door!',str(runTime)
         message = 'Coop close FAILED!'
         Safe_Kill()
         PushOver(message)
@@ -127,11 +131,11 @@ elif Door_Action == 'close':  # Door is open
     if BottomHall == 0:
         time.sleep(1)
         print 'Door is locked!'
-        message = 'Coop closed successfully ' + str(runTime) + 'secs.'
+        message = 'Coop closed successfully ' + str(runTime) + ' secs.'
         Safe_Kill()
         PushOver(message)
         sys.exit(0)
-elif BottomHall == 0:  # Door is locked
+elif BottomHall == 0:  # Door_Action is 'default' and Door is locked
     print 'The door is locked!'
     print 'The door is going up!'
     while TopHall == 1 and runTime < Door_Time:
@@ -140,7 +144,7 @@ elif BottomHall == 0:  # Door is locked
         TopHall = GPIO.input(16)
         runTime = time.clock() - TimeStart
     if 39 >= runTime:
-        print 'Something went wrong, go check the door!'
+        print 'Something went wrong, go check the door!',str(runTime)
         message = 'Coop open FAILED!'
         Safe_Kill()
         PushOver(message)
@@ -148,11 +152,11 @@ elif BottomHall == 0:  # Door is locked
     if TopHall == 0:
         time.sleep(1)
         print 'Door is open!'
-        message = 'Coop opened successfully ' + str(runTime) + 'secs.'
+        message = 'Coop opened successfully ' + str(runTime) + ' secs.'
         Safe_Kill()
         PushOver(message)
         sys.exit(0)
-elif TopHall == 0:  # Door is open
+elif TopHall == 0:  # Door_Action is 'default' and Door is open
     print 'The door is open!'
     print 'The door is going down!'
     while BottomHall == 1 and runTime < Door_Time:
@@ -161,7 +165,7 @@ elif TopHall == 0:  # Door is open
         BottomHall = GPIO.input(12)
         runTime = time.clock() - TimeStart
     if 39 >= runTime:
-        print 'Something went wrong, go check the door!'
+        print 'Something went wrong, go check the door!',str(runTime)
         message = 'Coop close FAILED!'
         Safe_Kill()
         PushOver(message)
@@ -169,10 +173,11 @@ elif TopHall == 0:  # Door is open
     if BottomHall == 0:
         time.sleep(1)
         print 'Door is locked!'
-        message = 'Coop closed successfully ' + str(runTime) + 'secs.'
+        message = 'Coop closed successfully ' + str(runTime) + ' secs.'
         Safe_Kill()
         PushOver(message)
         sys.exit(0)
+
 runTime = time.clock() - TimeStart
 print 'Total Time: ' + str(runTime)
 Safe_Kill()
