@@ -1,6 +1,7 @@
 #!/usr/bin/python
 import RPi.GPIO as GPIO
 import time
+import math
 import signal
 import sys
 import datetime
@@ -24,8 +25,8 @@ GPIO.setup(12, GPIO.IN)  # Closed
 
 def getRunningTime():
     time.sleep(1)
-    print 'getRunningTime', TimeStart, time.time()
-    return time.time() - TimeStart
+    # print 'getRunningTime', TimeStart, time.time()
+    return math.floor(time.time() - TimeStart)
 
 # Clean kill of script function (Stops Motor, cleans GPIO)
 def Safe_Kill():
