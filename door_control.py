@@ -13,7 +13,7 @@ pushover_user = 'u585xQwjtPfKEQdjFkdC243J8uryyk'
 
 RunningTime = 0
 DoorStatus = 'unknown'
-TimeStart = time.clock()
+TimeStart = time.time()
 
 # Setting up Board GPIO Pins
 GPIO.setmode(GPIO.BOARD)
@@ -24,8 +24,8 @@ GPIO.setup(12, GPIO.IN)  # Closed
 
 def getRunningTime():
     time.sleep(1)
-    print 'getRunningTime', TimeStart, time.clock()
-    return time.clock() - TimeStart
+    print 'getRunningTime', TimeStart, time.time()
+    return time.time() - TimeStart
 
 # Clean kill of script function (Stops Motor, cleans GPIO)
 def Safe_Kill():
