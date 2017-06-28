@@ -87,8 +87,8 @@ if len(sys.argv) > 2:  # Argument for door action time
         sys.exit(0)
 
 if len(sys.argv) > 1:  # Argument for door action
-    if sys.argv[1] != 'close' and sys.argv[1] != 'open':
-        print 'Please choose "open" or "close"'
+    if sys.argv[1] not in ['close', 'open', 'status']:
+        print 'Please choose "open", "close" or "status"'
         print "Exiting program..."
         sys.exit(0)
 
