@@ -1,8 +1,6 @@
 #!/usr/bin/python
 import RPi.GPIO as GPIO
 import time
-import math
-import signal
 import sys
 import datetime
 import httplib, urllib  # for Push Notifications
@@ -25,8 +23,7 @@ GPIO.setup(12, GPIO.IN)  # Closed
 
 def getRunningTime():
     time.sleep(1)
-    # print 'getRunningTime', TimeStart, time.time()
-    return math.floor(time.time() - TimeStart)
+    return int(time.time() - TimeStart)
 
 # Clean kill of script function (Stops Motor, cleans GPIO)
 def Safe_Kill():
