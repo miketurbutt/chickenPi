@@ -22,8 +22,9 @@ GPIO.setup(22, GPIO.OUT)  # motor
 GPIO.setup(16, GPIO.IN)  # Open
 GPIO.setup(12, GPIO.IN)  # Closed
 
-def getElapsedTime():
+def getRunningTime():
     time.sleep(1)
+    print 'getRunningTime', TimeStart, time.clock()
     return time.clock() - TimeStart
 
 # Clean kill of script function (Stops Motor, cleans GPIO)
@@ -115,13 +116,13 @@ if DoorAction == 'status':
 elif DoorAction == 'open':
     while RunningTime < DoorTimeout:
         driveOpen()
-        RunningTime = getElapsedTime()
+        RunningTime = getRunningTime()
         if isOpen(): PushOver('Coop opened successfully in ' + str(RunningTime) + ' secs :)', 'Bugle')
     PushOver('Coop open FAILED! :(', 'Siren')
 elif DoorAction == 'close':
     while RunningTime < DoorTimeout:
         driveClosed()
-        RunningTime = getElapsedTime()
+        RunningTime = getRunningTime()
         if isClosed(): PushOver('Coop closed successfully in ' + str(RunningTime) + ' secs :)', 'Bugle')
     PushOver('Coop close FAILED! :(', 'Siren')
 elif DoorAction != 'default':
@@ -134,14 +135,14 @@ elif isClosed():
     print 'The door is closed and so being opened!'
     while RunningTime < DoorTimeout:
         driveOpen()
-        RunningTime = getElapsedTime()
+        RunningTime = getRunningTime()
         if isOpen(): PushOver('Coop opened successfully in ' + str(RunningTime) + ' secs :)', 'Bugle') 
     PushOver('Coop open FAILED! :(', 'Siren')    
 elif isOpen():
     print 'The door is open and so going down!'
     while RunningTime < DoorTimeout:
         driveClosed()
-        RunningTime = getElapsedTime()
+        RunningTime = getRunningTime()
         if isClosed(): PushOver('Coop closed successfully ' + str(RunningTime) + ' secs :)', 'Bugle') 
     PushOver('Coop close FAILED! :(', 'Siren')
 
