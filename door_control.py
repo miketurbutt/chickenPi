@@ -26,7 +26,7 @@ def getRunningTime():
     return int(time.time() - TimeStart)
 
 # Clean kill of script function (Stops Motor, cleans GPIO)
-def Safe_Kill():
+def SafeOff():
     print 'Performing safe shutoff!'
     GPIO.output(18, False)
     GPIO.output(22, False)
@@ -52,7 +52,7 @@ if isClosed(): DoorStatus = 'Closed'
 elif isOpen(): DoorStatus = 'open'
 
 def PushOver(message, sound):
-    Safe_Kill()
+    SafeOff()
     print 'Sending Pushover', message, sound
     conn = httplib.HTTPSConnection("api.pushover.net:443")
     conn.request("POST", "/1/messages.json",
@@ -115,34 +115,34 @@ elif DoorAction == 'open':
     while RunningTime < DoorTimeout:
         driveOpen()
         RunningTime = getRunningTime()
-        if isOpen(): PushOver('Coop opened successfully in ' + str(RunningTime) + ' secs :)', 'Bugle')
-    PushOver('Coop open FAILED! :(', 'Siren')
+        if isOpen(): PushOver('Coop opened successfully in ' + str(RunningTime) + ' secs :)', 'bugle')
+    PushOver('Coop open FAILED! :(', 'siren')
 elif DoorAction == 'close':
     while RunningTime < DoorTimeout:
         driveClosed()
         RunningTime = getRunningTime()
-        if isClosed(): PushOver('Coop closed successfully in ' + str(RunningTime) + ' secs :)', 'Bugle')
-    PushOver('Coop close FAILED! :(', 'Siren')
+        if isClosed(): PushOver('Coop closed successfully in ' + str(RunningTime) + ' secs :)', 'bugle')
+    PushOver('Coop close FAILED! :(', 'siren')
 elif DoorAction != 'default':
-    PushOver('Invalid DoorAction of: ' + DoorAction, 'Run')
+    PushOver('Invalid DoorAction of: ' + DoorAction, 'incoming')
 elif isClosed() and isOpen():
-    PushOver('Invalid DoorStatus (both): ' + DoorStatus, 'Run')
+    PushOver('Invalid DoorStatus (both): ' + DoorStatus, 'incoming')
 elif not isClosed() and not isOpen():
-    PushOver('Invalid DoorStatus (neither): ' + DoorStatus, 'Run')
+    PushOver('Invalid DoorStatus (neither): ' + DoorStatus, 'incoming')
 elif isClosed():
     print 'The door is closed and so being opened!'
     while RunningTime < DoorTimeout:
         driveOpen()
         RunningTime = getRunningTime()
-        if isOpen(): PushOver('Coop opened successfully in ' + str(RunningTime) + ' secs :)', 'Bugle') 
-    PushOver('Coop open FAILED! :(', 'Siren')    
+        if isOpen(): PushOver('Coop opened successfully in ' + str(RunningTime) + ' secs :)', 'bugle') 
+    PushOver('Coop open FAILED! :(', 'siren')    
 elif isOpen():
     print 'The door is open and so going down!'
     while RunningTime < DoorTimeout:
         driveClosed()
         RunningTime = getRunningTime()
-        if isClosed(): PushOver('Coop closed successfully ' + str(RunningTime) + ' secs :)', 'Bugle') 
-    PushOver('Coop close FAILED! :(', 'Siren')
+        if isClosed(): PushOver('Coop closed successfully ' + str(RunningTime) + ' secs :)', 'bugle') 
+    PushOver('Coop close FAILED! :(', 'siren')
 
-PushOver('WTF is happening?! :o', 'Run') 
+PushOver('WTF is happening?! :o', 'incoming') 
 
