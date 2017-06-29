@@ -110,7 +110,7 @@ print 'DoorStatus is', DoorStatus
 # TODO try and except 
 
 if DoorAction == 'status':
-    PushOver(DoorStatus, 'Bike')
+    PushOver(DoorStatus, 'bike')
 elif DoorAction == 'open':
     while RunningTime < DoorTimeout:
         driveOpen()
