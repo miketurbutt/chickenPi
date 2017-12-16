@@ -80,8 +80,8 @@ if len(sys.argv) > 2:  # Argument for door action time
         print 'Error: ', str(sys.argv[2]), ' is not a number!'
         print "Exiting program..."
         sys.exit(0)
-    if int(sys.argv[2]) > 39:  # Checks that a time longer than 39s isn't entered
-        print 'Please choose a time less than 39s'
+    if int(sys.argv[2]) > 40:  # Checks that a time longer than 40s isn't entered
+        print 'Please choose a time less than 40s'
         print "Exiting program..."
         sys.exit(0)
 
@@ -98,10 +98,10 @@ if len(sys.argv) == 3:
 if len(sys.argv) == 2:
     print 'Forcing door to ', str(sys.argv[1])
     DoorAction = sys.argv[1]
-    DoorTimeout = 39  # This is a safety time
+    DoorTimeout = 40  # This is a safety time
 if len(sys.argv) == 1:
     DoorAction = 'default'  # Will reverse door state
-    DoorTimeout = 39  # This is a safety time
+    DoorTimeout = 40  # This is a safety time
 
 print 'DoorAction is', DoorAction
 print 'DoorTimeout is', DoorTimeout
