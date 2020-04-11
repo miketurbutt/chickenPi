@@ -7,8 +7,8 @@ import httplib, urllib  # for Push Notifications
 
 # config.txt included in .gitignore first line is the token, the second line is the key
 # config = open('config.txt').readlines()
-pushover_token = 'aZ48abAEXfJouw9p3ZHaXPtrgo1URM'
-pushover_user = 'u585xQwjtPfKEQdjFkdC243J8uryyk'
+pushover_token = 'pushover_token'
+pushover_user = 'pushover_user'
 
 RunningTime = 0
 DoorStatus = 'unknown'
